@@ -20,3 +20,8 @@ npm run subgraph:build
 npm run deploy:hosted:mainnet
 
 ```
+
+## Hosted Service 
+[Testnet](https://thegraph.com/hosted-service/subgraph/muesliw/kinza-bsc-testnet)
+
+[Mainnet](https://thegraph.com/hosted-service/subgraph/kinza-finance/lending)

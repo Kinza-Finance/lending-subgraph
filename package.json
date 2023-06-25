@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "This package contains subgraphs of the Aave protocol v2 and v3",
   "scripts": {
+    "create-local": "graph create kinza/chapel --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy kinza/chapel --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020",
     "generate:schema": "cp ./schemas/${VERSION}.schema.graphql  schema.graphql",
     "prepare:subgraph": "mustache ./config/${NETWORK}-${VERSION}.json ./templates/${BLOCKCHAIN}.subgraph.template.yaml > subgraph.yaml && rm -rf generated && npm run generate:schema && npm run subgraph:codegen && npm run subgraph:build",
     "subgraph:codegen": "graph codegen --output-dir ./generated",
