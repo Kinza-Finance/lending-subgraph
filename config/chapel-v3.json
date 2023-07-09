@@ -1,10 +1,10 @@
 {
     "network": "chapel",
-    "AaveOracleAddress": "0x08d7aB7A34e1fa2817fa45038227Fb54989E108F",
-    "AaveOracleStartBlock": 30644490,
-    "PoolAddressesProviderRegistryAddress": "0x00fca0db7Ec278779A9728eA0C7bCD19610D6B5a",
-    "PoolAddressesProviderRegistryStartBlock": 30187219,
-    "RewardsControllerAddress": "0x4e2DecF266244693bb094A317A91878cc7d32c72",
-    "RewardsControllerStartBlock": 30188065
+    "AaveOracleAddress": "0xBee779e5998295B514E0A92A1449a83090a06F3F",
+    "AaveOracleStartBlock": 31219032,
+    "PoolAddressesProviderRegistryAddress": "0x69Fb711e9362327856587bEa96F1E2d429727C4D",
+    "PoolAddressesProviderRegistryStartBlock": 31162558,
+    "RewardsControllerAddress": "0xd642291EBBD364679F9387E0C41Cf30444A661e4",
+    "RewardsControllerStartBlock": 31163109
   }
   
