@@ -13,6 +13,7 @@
     "deploy:hosted:chapel-v3": "VERSION=v2 BLOCKCHAIN=v3 NETWORK=chapel env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:mainnet": "VERSION=v2 BLOCKCHAIN=ethereum NETWORK=mainnet env-cmd npm run prepare:subgraph && SLUG=aave/protocol-v2 env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:mainnet-v3": "VERSION=v3 BLOCKCHAIN=v3 NETWORK=mainnet env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
+    "deploy:hosted:bsc-v3": "VERSION=v3 BLOCKCHAIN=v3 NETWORK=bsc env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:goerli-v2": "VERSION=v2 BLOCKCHAIN=ethereum NETWORK=goerli env-cmd npm run prepare:subgraph && SLUG=aave/protocol-v2-goerli env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:goerli-v3": "VERSION=v3 BLOCKCHAIN=v3 NETWORK=goerli env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:mainnet-arc": "VERSION=v2-arc BLOCKCHAIN=ethereum-arc NETWORK=mainnet env-cmd npm run prepare:subgraph && SLUG=aave/aave-arc env-cmd npm run subgraph:deploy:hosted",
