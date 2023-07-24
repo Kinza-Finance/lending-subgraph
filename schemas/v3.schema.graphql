@@ -111,6 +111,12 @@ type PriceOracle @entity {
   baseCurrencyUnit: BigInt! # new for v3
 }
 
+type BinanceOracle @entity {
+  id: String!
+  lastUpdateTimestamp: Int!
+  tokens: [PriceOracleAsset!]!
+}
+
 # Entity representing A/VariableDebt/StableDebt tokens
 type SubToken @entity {
   """

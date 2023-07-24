@@ -3,6 +3,7 @@ import {
   SubToken,
   PriceOracle,
   PriceOracleAsset,
+  BinanceOracle,
   Reserve,
   User,
   UserReserve,
@@ -118,6 +119,16 @@ export function getOrInitPriceOracle(): PriceOracle {
   return priceOracle as PriceOracle;
 }
 
+export function getOrInitBinanceOracle(): BinanceOracle {
+  let priceOracle = BinanceOracle.load('1');
+  if (!priceOracle) {
+    priceOracle = new BinanceOracle('1');
+    priceOracle.tokens = [];
+    priceOracle.lastUpdateTimestamp = 0;
+    priceOracle.save();
+  }
+  return priceOracle as BinanceOracle;
+}
 export function getPriceOracleAsset(id: string, save: boolean = true): PriceOracleAsset {
   let priceOracleReserve = PriceOracleAsset.load(id);
   if (!priceOracleReserve && save) {
