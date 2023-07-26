@@ -10,7 +10,7 @@
     "subgraph:codegen": "graph codegen --output-dir ./generated",
     "subgraph:build": "graph build",
     "subgraph:deploy:hosted": "graph deploy $SLUG --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --access-token $ACCESS_TOKEN",
-    "deploy:hosted:chapel-v3": "VERSION=v2 BLOCKCHAIN=v3 NETWORK=chapel env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
+    "deploy:hosted:chapel-v3": "VERSION=v3 BLOCKCHAIN=v3 NETWORK=chapel env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:mainnet": "VERSION=v2 BLOCKCHAIN=ethereum NETWORK=mainnet env-cmd npm run prepare:subgraph && SLUG=aave/protocol-v2 env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:mainnet-v3": "VERSION=v3 BLOCKCHAIN=v3 NETWORK=mainnet env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
     "deploy:hosted:bsc-v3": "VERSION=v3 BLOCKCHAIN=v3 NETWORK=bsc env-cmd npm run prepare:subgraph && SLUG=$SLUG env-cmd npm run subgraph:deploy:hosted",
