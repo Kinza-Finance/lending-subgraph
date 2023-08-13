@@ -5,6 +5,8 @@
     "PoolAddressesProviderRegistryAddress": "0x69Fb711e9362327856587bEa96F1E2d429727C4D",
     "PoolAddressesProviderRegistryStartBlock": 31162558,
     "RewardsControllerAddress": "0xd642291EBBD364679F9387E0C41Cf30444A661e4",
-    "RewardsControllerStartBlock": 31163109
+    "RewardsControllerStartBlock": 31163109,
+    "OnChainOracleAddress": "0x04b7E91e97c74e4Aa7b77a3948F99c978B7Fa8FA",
+    "OnChainOracleStartBlock": 31829943
   }
   

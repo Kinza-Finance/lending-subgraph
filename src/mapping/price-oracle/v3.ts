@@ -5,16 +5,18 @@ import {
   EthPriceUpdated,
 } from '../../../generated/templates/FallbackPriceOracle/PriceOracle';
 import { AnswerUpdated } from '../../../generated/templates/ChainlinkAggregator/IExtendedPriceAggregator';
+import { Success } from '../../../generated/OnChainOracle/OnChainOracle';
 import { formatUsdEthChainlinkPrice, zeroBI } from '../../utils/converters';
 import {
   getChainlinkAggregator,
+  getOrInitBinanceOracle,
   getOrInitPriceOracle,
   getPriceOracleAsset,
 } from '../../helpers/v3/initializers';
 import { PriceOracle } from '../../../generated/schema';
 import { AaveOracle } from '../../../generated/AaveOracle/AaveOracle';
 import { MOCK_USD_ADDRESS } from '../../utils/constants';
-import { genericPriceUpdate, usdEthPriceUpdate } from '../../helpers/v3/price-updates';
+import { genericPriceUpdate, updateDependentAssets, usdEthPriceUpdate } from '../../helpers/v3/price-updates';
 
 // GANACHE
 export function handleAssetPriceUpdated(event: AssetPriceUpdated): void {
@@ -108,4 +110,11 @@ export function handleChainlinkAnswerUpdated(event: AnswerUpdated): void {
       }
     }
   }
+}
+
+export function handleBinanceOraclePriceUpdated(event: Success): void {
+  let binanceOracle = getOrInitBinanceOracle();
+  const tokens = binanceOracle.tokens;
+  updateDependentAssets(tokens, event);
+  binanceOracle.lastUpdateTimestamp = event.block.timestamp.toI32();
 }
