@@ -5,3 +5,4 @@ generated
 .idea
 .env
 schema.graphql
+.vscode

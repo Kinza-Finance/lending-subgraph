@@ -160,9 +160,69 @@ dataSources:
         - event: EmissionManagerUpdated(indexed address,indexed address)
           handler: handleEmissionManagerUpdated
       file: src/mapping/incentives-controller/v3.ts
+
   # --------------------------------------
-  #
+  #            xKZA
   # --------------------------------------
+  # - kind: ethereum/contract
+  #   name: xKZA
+  #   network: {{network}}
+  #   source:
+  #     address: '{{xKZAAddress}}'
+  #     abi: xKZA
+  #     startBlock: {{xKZAStartBlock}}
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.6
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - UserRedeem
+  #     abis:
+  #       - name: xKZA
+  #         file: ./abis/v3/xKZA.json
+  #       - name: IERC20Detailed
+  #         file: ./abis/helpers/IERC20Detailed.json
+  #     eventHandlers:
+  #       - event: Convert(indexed address,address,uint256)
+  #         handler: handleXKZAConvert
+  #       - event: Redeem(indexed address,uint256,uint256,uint256)
+  #         handler: handleXKZARedeem
+  #       - event: CancelRedeem(indexed address,uint256,uint256)
+  #         handler: handleXKZARedeemCancel
+  #       - event: FinalizeRedeem(indexed address,uint256,uint256,uint256)
+  #         handler: handleXKZARedeemFinalize
+  #       # - event: Approval(indexed address,indexed address,uint256)
+  #       #   handler: handlexKZAApproval
+  #     file: src/mapping/tokenomics/xkza-v3.ts
+
+  # --------------------------------------
+  #            Voter
+  # --------------------------------------
+  - kind: ethereum/contract
+    name: Voter
+    network: {{network}}
+    source:
+      address: '{{VoterAddress}}'
+      abi: Voter
+      startBlock: {{VoterStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - VoteMarket
+      abis:
+        - name: Voter
+          file: ./abis/v3/Voter.json
+      eventHandlers:
+        - event: Voted(indexed address,address,uint256,uint256)
+          handler: handleVoted
+        - event: Abstained(address,uint256,uint256)
+          handler: handleAbstained
+        - event: MarketBribeCreated(address,address)
+          handler: handleMarketBribeCreated
+      file: src/mapping/tokenomics/vote-v3.ts
+
 templates:
   # --------------------------------------
   #      ORACLES / PRICE PROVIDERS

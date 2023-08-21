@@ -1,4 +1,4 @@
-import { Bytes, ethereum, log } from '@graphprotocol/graph-ts';
+import { BigInt, Bytes, ethereum, log } from '@graphprotocol/graph-ts';
 import {
   SubToken,
   PriceOracle,
@@ -14,6 +14,9 @@ import {
   ContractToPoolMapping,
   Protocol,
   Pool,
+  XKZA,
+  UserXKZA,
+  Voter,
 } from '../../../generated/schema';
 import {
   PRICE_ORACLE_ASSET_PLATFORM_SIMPLE,
@@ -354,4 +357,34 @@ export function createMapContractToPool(_contractAddress: Bytes, pool: string): 
   contractToPoolMapping = new ContractToPoolMapping(contractAddress);
   contractToPoolMapping.pool = pool;
   contractToPoolMapping.save();
+}
+
+export function getOrInitXKZA(): XKZA {
+  let xkza = XKZA.load('1');
+  if (!xkza) {
+    xkza = new XKZA('1');
+    xkza.totalSupply = zeroBI();
+    xkza.totalRedeem = zeroBI();
+    xkza.save();
+  }
+  return xkza;
+}
+
+export function getOrInitUserXKZA(userAddress: string): UserXKZA {
+  let userxkza = UserXKZA.load(userAddress);
+  if (!userxkza) {
+    userxkza = new UserXKZA(userAddress);
+    userxkza.balance = zeroBI();
+    userxkza.save();
+  }
+  return userxkza;
+}
+
+export function getOrInitVoter(): Voter {
+  let voter = Voter.load('1');
+  if (!voter) {
+    voter = new Voter('1');
+    voter.save();
+  }
+  return voter;
 }

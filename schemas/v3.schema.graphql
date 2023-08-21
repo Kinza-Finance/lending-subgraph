@@ -533,7 +533,7 @@ type MapAssetPool @entity {
 
 type Reserve @entity {
   """
-  Reserve address
+  Reserve address (underlying asset, poolId)
   """
   id: ID!
   underlyingAsset: Bytes!
@@ -637,6 +637,7 @@ type Reserve @entity {
   paramsHistory: [ReserveParamsHistoryItem!]! @derivedFrom(field: "reserve")
   configurationHistory: [ReserveConfigurationHistoryItem!]! @derivedFrom(field: "reserve")
   supplies: [Supply!]! @derivedFrom(field: "reserve")
+  voteMarket: VoteMarket @derivedFrom(field: "reserve")
 }
 
 type ATokenBalanceHistoryItem @entity {
@@ -799,4 +800,67 @@ type SwapHistory @entity {
   fromAmount: BigInt!
   receivedAmount: BigInt!
   swapType: String!
+}
+
+type XKZA @entity {
+  id: String!
+  totalSupply: BigInt!
+  totalRedeem: BigInt!
+  # redeemHistory: [RedeemInfo!]!
+}
+
+type UserXKZA @entity {
+  """
+  user address
+  """
+  id: String!
+  balance: BigInt!
+  redeems: [RedeemInfo!]! @derivedFrom(field: "userXKZA")
+}
+
+enum RedeemStatus {
+  Pending
+  Canceled
+  Finalized
+}
+
+type RedeemInfo @entity {
+  """
+  user address + tx hash + log index
+  """
+  id: String!
+  userXKZA: UserXKZA
+  xkzaAmount: BigInt!
+  kzaAmount: BigInt!
+  endTime: Int!
+  userRedeemIndex: Int!
+  status: RedeemStatus!
+}
+
+type Voter @entity {
+  id: String!
+  markets: [VoteMarket!]! @derivedFrom(field: "voter")
+}
+
+type VoteMarket @entity {
+  """
+  underlying address
+  """
+  id: String!
+  bribe: String!
+  weight: BigInt!
+  reserve: Reserve!
+  voter: Voter!
+}
+
+type UserVote @entity {
+  """
+  underlying address + user address
+  """
+  id: String!
+  pool: String!
+  user: String!
+  weight: BigInt!
+  epoch: Int!
+  lastUpdateTimestamp: Int!
 }
