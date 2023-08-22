@@ -1,6 +1,11 @@
 specVersion: 0.0.4
 description: Protocol v3 subgraph
 repository: https://github.com/aave/protocol-subgraphs
+# graft:
+#   base: QmSh2CknjTyAwnXgJKoHznqJ5ZvDisAzDoqjGE4T6ggf24 # Subgraph ID of base subgraph
+#   block: 243 # Block number
+# features:
+#   - grafting
 schema:
   file: ./schema.graphql
 dataSources:
@@ -44,30 +49,30 @@ dataSources:
           handler: handleBaseCurrencySet
       file: src/mapping/proxy-price-provider/v3.ts
 
-  - kind: ethereum/contract
-    name: OnChainOracle
-    network: {{network}}
-    source:
-      address: '{{OnChainOracleAddress}}'
-      startBlock: {{OnChainOracleStartBlock}}
-      abi: OnChainOracle
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - BinanceOracle
-      abis:
-        - name: OnChainOracle
-          file: ./abis/v3/OnChainOracle.json
-        - name: BinanceOracleAggregator
-          file: ./abis/v3/BinanceOracleAggregator.json
-        - name: AaveOracle
-          file: ./abis/v3/AaveOracle.json
-      eventHandlers:
-        - event: Success(address)
-          handler: handleBinanceOraclePriceUpdated
-      file: src/mapping/price-oracle/v3.ts
+  # - kind: ethereum/contract
+  #   name: OnChainOracle
+  #   network: {{network}}
+  #   source:
+  #     address: '{{OnChainOracleAddress}}'
+  #     startBlock: {{OnChainOracleStartBlock}}
+  #     abi: OnChainOracle
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.6
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - BinanceOracle
+  #     abis:
+  #       - name: OnChainOracle
+  #         file: ./abis/v3/OnChainOracle.json
+  #       - name: BinanceOracleAggregator
+  #         file: ./abis/v3/BinanceOracleAggregator.json
+  #       - name: AaveOracle
+  #         file: ./abis/v3/AaveOracle.json
+  #     eventHandlers:
+  #       - event: Success(address)
+  #         handler: handleBinanceOraclePriceUpdated
+  #     file: src/mapping/price-oracle/v3.ts
 
   # - kind: ethereum/contract
   #   name: ChainlinkSourcesRegistry
@@ -198,30 +203,30 @@ dataSources:
   # --------------------------------------
   #            Voter
   # --------------------------------------
-  - kind: ethereum/contract
-    name: Voter
-    network: {{network}}
-    source:
-      address: '{{VoterAddress}}'
-      abi: Voter
-      startBlock: {{VoterStartBlock}}
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - VoteMarket
-      abis:
-        - name: Voter
-          file: ./abis/v3/Voter.json
-      eventHandlers:
-        - event: Voted(indexed address,address,uint256,uint256)
-          handler: handleVoted
-        - event: Abstained(address,uint256,uint256)
-          handler: handleAbstained
-        - event: MarketBribeCreated(address,address)
-          handler: handleMarketBribeCreated
-      file: src/mapping/tokenomics/vote-v3.ts
+  # - kind: ethereum/contract
+  #   name: Voter
+  #   network: {{network}}
+  #   source:
+  #     address: '{{VoterAddress}}'
+  #     abi: Voter
+  #     startBlock: {{VoterStartBlock}}
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.6
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - VoteMarket
+  #     abis:
+  #       - name: Voter
+  #         file: ./abis/v3/Voter.json
+  #     eventHandlers:
+  #       - event: Voted(indexed address,address,uint256,uint256)
+  #         handler: handleVoted
+  #       - event: Abstained(address,uint256,uint256)
+  #         handler: handleAbstained
+  #       - event: MarketBribeCreated(address,address)
+  #         handler: handleMarketBribeCreated
+  #     file: src/mapping/tokenomics/vote-v3.ts
 
 templates:
   # --------------------------------------
@@ -335,6 +340,7 @@ templates:
         - event: Initialized(indexed address,indexed address,address,uint8,string,string,bytes)
           handler: handleSTokenInitialized
       file: src/mapping/tokenization/initialization-v3.ts
+
   - kind: ethereum/contract
     name: VariableDebtToken
     network: {{network}}
@@ -482,6 +488,7 @@ templates:
         - event: VariableDebtTokenUpgraded(indexed address,indexed address,indexed address)
           handler: handleVariableDebtTokenUpgraded
       file: src/mapping/lending-pool-configurator/v3.ts
+
   - kind: ethereum/contract
     name: Pool
     network: {{network}}

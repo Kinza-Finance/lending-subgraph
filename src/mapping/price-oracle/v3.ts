@@ -5,7 +5,7 @@ import {
   EthPriceUpdated,
 } from '../../../generated/templates/FallbackPriceOracle/PriceOracle';
 import { AnswerUpdated } from '../../../generated/templates/ChainlinkAggregator/IExtendedPriceAggregator';
-import { Success } from '../../../generated/OnChainOracle/OnChainOracle';
+// import { Success } from '../../../generated/OnChainOracle/OnChainOracle';
 import { formatUsdEthChainlinkPrice, zeroBI } from '../../utils/converters';
 import {
   getChainlinkAggregator,
@@ -112,9 +112,9 @@ export function handleChainlinkAnswerUpdated(event: AnswerUpdated): void {
   }
 }
 
-export function handleBinanceOraclePriceUpdated(event: Success): void {
-  let binanceOracle = getOrInitBinanceOracle();
-  const tokens = binanceOracle.tokens;
-  updateDependentAssets(tokens, event);
-  binanceOracle.lastUpdateTimestamp = event.block.timestamp.toI32();
-}
+// export function handleBinanceOraclePriceUpdated(event: Success): void {
+//   let binanceOracle = getOrInitBinanceOracle();
+//   const tokens = binanceOracle.tokens;
+//   updateDependentAssets(tokens, event);
+//   binanceOracle.lastUpdateTimestamp = event.block.timestamp.toI32();
+// }
