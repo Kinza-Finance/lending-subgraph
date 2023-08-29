@@ -534,3 +534,23 @@ templates:
         - event: IsolationModeTotalDebtUpdated(indexed address,uint256)
           handler: handleIsolationModeTotalDebtUpdated
       file: src/mapping/lending-pool/v3.ts
+
+  - kind: ethereum/contract
+    name: AggregateBribe
+    network: {{network}}
+    source:
+      abi: AggregateBribe
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - BribeTokenRewardPerEpoch
+        - BribeTokenRewardInfo
+      abis:
+        - name: AggregateBribe
+          file: ./abis/v3/AggregateBribe.json
+      eventHandlers:
+        - event: NotifyReward(indexed address,indexed address,uint256,uint256)
+          handler: handleNotifyReward
+      file: src/mapping/tokenomics/aggregate-bribe-v3.ts

@@ -7,6 +7,9 @@
     "RewardsControllerAddress": "0xd642291EBBD364679F9387E0C41Cf30444A661e4",
     "RewardsControllerStartBlock": 31163109,
     "OnChainOracleAddress": "0x04b7E91e97c74e4Aa7b77a3948F99c978B7Fa8FA",
-    "OnChainOracleStartBlock": 31829943
+    "OnChainOracleStartBlock": 31829943,
+    "xKZAAddress": "0x007D66f9853dF1e8847977aA785E5a0DE77B9D1a",
+    "xKZAStartBlock": 32859540,
+    "VoterAddress": "0xCff111c897cb676113861337d1Ac275a9b9A7b56",
+    "VoterStartBlock": 32249156
   }
-  

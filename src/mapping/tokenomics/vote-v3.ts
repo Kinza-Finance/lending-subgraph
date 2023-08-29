@@ -1,5 +1,6 @@
 import { Voted, Abstained, MarketBribeCreated } from '../../../generated/Voter/Voter';
-import { VoteMarket, UserVote } from '../../../generated/schema';
+import { VoteMarket, UserVote, VoteBribeInfo } from '../../../generated/schema';
+import { AggregateBribe } from '../../../generated/templates';
 // import { getOrInitUserXKZA, getOrInitXKZA } from '../../helpers/v3/initializers';
 import { Bytes, BigInt, log } from '@graphprotocol/graph-ts';
 import { getProtocol, getOrInitVoter } from '../../helpers/v3/initializers';
@@ -35,6 +36,7 @@ export function handleVoted(event: Voted): void {
     throw new Error('No vote market found for pool ' + pool);
   }
   voteMarket.weight = voteMarket.weight.plus(weight);
+  voteMarket.lastUpdateTimestamp = lastUpdateTimestamp;
   voteMarket.save();
 }
 
@@ -95,5 +97,13 @@ export function handleMarketBribeCreated(event: MarketBribeCreated): void {
     voteMarket.reserve = reserveId;
     voteMarket.voter = voter.id;
     voteMarket.save();
+  }
+  let bribeInfo = VoteBribeInfo.load(bribeAddress);
+  if (bribeInfo == null) {
+    bribeInfo = new VoteBribeInfo(bribeAddress);
+    bribeInfo.underlyingAsset = underlyingAssetAddress;
+    bribeInfo.voteMarket = voteMarket.id;
+    bribeInfo.save();
+    AggregateBribe.create(event.params.bribe);
   }
 }

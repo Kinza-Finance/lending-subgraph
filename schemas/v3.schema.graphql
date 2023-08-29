@@ -847,10 +847,11 @@ type VoteMarket @entity {
   underlying address
   """
   id: String!
-  bribe: String!
+  bribe: VoteBribeInfo!
   weight: BigInt!
   reserve: Reserve!
   voter: Voter!
+  lastUpdateTimestamp: Int!
 }
 
 type UserVote @entity {
@@ -863,4 +864,35 @@ type UserVote @entity {
   weight: BigInt!
   epoch: Int!
   lastUpdateTimestamp: Int!
+}
+
+type BribeTokenRewardPerEpoch @entity {
+  """
+  bribe address + token address + epoch timestamp
+  """
+  id: String!
+  bribeTokenRewardInfo: BribeTokenRewardInfo!
+  amount: BigInt!
+  epochTimestamp: Int! # opoch start timestamp
+}
+
+type BribeTokenRewardInfo @entity {
+  """
+  bribe address + token address
+  """
+  id: String!
+  bribe: VoteBribeInfo!
+  rewardtokenAddress: String!
+  latestEpochTimestamp: Int!
+  epochRewardRecords: [BribeTokenRewardPerEpoch!]! @derivedFrom(field: "bribeTokenRewardInfo")
+}
+
+type VoteBribeInfo @entity {
+  """
+  bribe address
+  """
+  id: String!
+  underlyingAsset: String!
+  voteMarket: VoteMarket!
+  bribeTokenRewards: [BribeTokenRewardInfo!] @derivedFrom(field: "bribe")
 }

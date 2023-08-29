@@ -6,3 +6,4 @@ generated
 .env
 schema.graphql
 .vscode
+.DS_Store

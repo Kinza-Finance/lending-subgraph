@@ -38,7 +38,7 @@ function initializeToken(asset: Address, underlyingAsset: Address, pool: Address
 // }
 
 export function handleATokenInitialized(event: ATokenInitialized): void {
-  log.error('asset: {}', [event.address.toHexString()]);
+  log.info('asset: {}', [event.address.toHexString()]);
   initializeToken(event.address, event.params.underlyingAsset, event.params.pool);
 }
 
