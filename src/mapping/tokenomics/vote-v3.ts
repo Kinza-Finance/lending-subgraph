@@ -96,6 +96,7 @@ export function handleMarketBribeCreated(event: MarketBribeCreated): void {
     voteMarket.weight = BigInt.fromI32(0);
     voteMarket.reserve = reserveId;
     voteMarket.voter = voter.id;
+    voteMarket.lastUpdateTimestamp = event.block.timestamp.toI32();
     voteMarket.save();
   }
   let bribeInfo = VoteBribeInfo.load(bribeAddress);
