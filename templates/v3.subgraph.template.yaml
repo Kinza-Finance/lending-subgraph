@@ -1,6 +1,11 @@
 specVersion: 0.0.4
 description: Protocol v3 subgraph
 repository: https://github.com/aave/protocol-subgraphs
+graft:
+  base: QmexUGiy5bDhZhq11e46gA4ndTGZHj5VinvEAEfDGmUSg3 # Subgraph ID of base subgraph
+  block: 31799291 # Block number
+features:
+  - grafting
 schema:
   file: ./schema.graphql
 dataSources:

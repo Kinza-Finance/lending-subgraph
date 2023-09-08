@@ -13,7 +13,7 @@ import {
   getOrInitReserveConfigurationHistoryItem,
   getPoolByContract,
 } from '../../helpers/v3/initializers';
-import { Bytes, Address, ethereum, log, BigInt } from '@graphprotocol/graph-ts';
+import { Bytes, Address, ethereum, log, BigInt, store } from '@graphprotocol/graph-ts';
 import {
   ReserveActive,
   ReserveBorrowing,
@@ -174,8 +174,9 @@ export function handleReservePaused(event: ReservePaused): void {
 
 export function handleReserveDropped(event: ReserveDropped): void {
   let reserve = getOrInitReserve(event.params.asset, event);
-  reserve.isDropped = true;
-  reserve.save();
+  // reserve.isDropped = true;
+  // reserve.save();
+  store.remove('Reserve', reserve.id);
 }
 
 export function handleBorrowCapChanged(event: BorrowCapChanged): void {
