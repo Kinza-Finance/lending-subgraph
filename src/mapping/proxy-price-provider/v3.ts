@@ -177,6 +177,10 @@ export function priceFeedUpdated(
       priceOracleAsset.isFallbackRequired = false;
       priceOracleAsset.priceSource = assetOracleAddress;
 
+      let subTokenCall = priceAggregatorInstance.try_getSubTokens();
+      if (subTokenCall.reverted) {
+        return;
+      }
       // call contract and check on which assets we're dependent
       let dependencies = priceAggregatorInstance.getSubTokens();
       // add asset to all dependencies
