@@ -1,0 +1,9 @@
+{
+  "network": "opbnb-mainnet",
+  "AaveOracleAddress": "0x35d8D765fb0A15d8F7e75DF0830d91e34DF97c8a",
+  "AaveOracleStartBlock": 4489746,
+  "PoolAddressesProviderRegistryAddress": "0x37D7Eb561E189895E5c8601Cd03EEAB67C269189",
+  "PoolAddressesProviderRegistryStartBlock": 4478556,
+  "RewardsControllerAddress": "0x30b1a8C1A4a9dD9146D1166F992f4e1962683a67",
+  "RewardsControllerStartBlock": 4502905
+}
