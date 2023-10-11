@@ -49,30 +49,30 @@ dataSources:
           handler: handleBaseCurrencySet
       file: src/mapping/proxy-price-provider/v3.ts
 
-  # - kind: ethereum/contract
-  #   name: OnChainOracle
-  #   network: {{network}}
-  #   source:
-  #     address: '{{OnChainOracleAddress}}'
-  #     startBlock: {{OnChainOracleStartBlock}}
-  #     abi: OnChainOracle
-  #   mapping:
-  #     kind: ethereum/events
-  #     apiVersion: 0.0.6
-  #     language: wasm/assemblyscript
-  #     entities:
-  #       - BinanceOracle
-  #     abis:
-  #       - name: OnChainOracle
-  #         file: ./abis/v3/OnChainOracle.json
-  #       - name: BinanceOracleAggregator
-  #         file: ./abis/v3/BinanceOracleAggregator.json
-  #       - name: AaveOracle
-  #         file: ./abis/v3/AaveOracle.json
-  #     eventHandlers:
-  #       - event: Success(address)
-  #         handler: handleBinanceOraclePriceUpdated
-  #     file: src/mapping/price-oracle/v3.ts
+  - kind: ethereum/contract
+    name: OnChainOracle
+    network: {{network}}
+    source:
+      address: '{{OnChainOracleAddress}}'
+      startBlock: {{OnChainOracleStartBlock}}
+      abi: OnChainOracle
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - BinanceOracle
+      abis:
+        - name: OnChainOracle
+          file: ./abis/v3/OnChainOracle.json
+        - name: BinanceOracleAggregator
+          file: ./abis/v3/BinanceOracleAggregator.json
+        - name: AaveOracle
+          file: ./abis/v3/AaveOracle.json
+      eventHandlers:
+        - event: Success(address)
+          handler: handleBinanceOraclePriceUpdated
+      file: src/mapping/price-oracle/v3.ts
 
   # - kind: ethereum/contract
   #   name: ChainlinkSourcesRegistry
