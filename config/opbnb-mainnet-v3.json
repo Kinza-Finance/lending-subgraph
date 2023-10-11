@@ -1,11 +1,11 @@
 {
   "network": "opbnb-mainnet",
-  "AaveOracleAddress": "0x35d8D765fb0A15d8F7e75DF0830d91e34DF97c8a",
-  "AaveOracleStartBlock": 4489746,
-  "PoolAddressesProviderRegistryAddress": "0x37D7Eb561E189895E5c8601Cd03EEAB67C269189",
-  "PoolAddressesProviderRegistryStartBlock": 4478556,
-  "RewardsControllerAddress": "0x30b1a8C1A4a9dD9146D1166F992f4e1962683a67",
-  "RewardsControllerStartBlock": 4502905,
+  "AaveOracleAddress": "0x41822C45348358D612F8D4e3E1Bc1aa2bE92A85e",
+  "AaveOracleStartBlock": 5243001,
+  "PoolAddressesProviderRegistryAddress": "0xcf46F77cD75a17900d59676fBe4B88aAdcBA9533",
+  "PoolAddressesProviderRegistryStartBlock": 5239036,
+  "RewardsControllerAddress": "0xd8340261c577550BFe46e935ff3Bcd8580F5BCEe",
+  "RewardsControllerStartBlock": 5243793,
   "OnChainOracleAddress": "0x927F2E7C8FD57E083DE7BD781E03852F41F06170",
-  "OnChainOracleStartBlock": 4478556
+  "OnChainOracleStartBlock": 5239036
 }
