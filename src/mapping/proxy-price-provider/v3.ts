@@ -120,8 +120,8 @@ export function priceFeedUpdated(
     }
     // for binance orale
     let binanceOracleProxyInstance = BinanceOracleAggregator.bind(assetOracleAddress);
-    let sidRegistryAddressCall = binanceOracleProxyInstance.try_sidRegistryAddress();
-    if (!sidRegistryAddressCall.reverted)  {
+    let BinanceOracleAccessCall = binanceOracleProxyInstance.try_checkBinanceOracleAccess();
+    if (!BinanceOracleAccessCall.reverted)  {
       // @TODO update price
       let getPriceCall = binanceOracleProxyInstance.try_latestAnswer();
       if (!getPriceCall.reverted) {
