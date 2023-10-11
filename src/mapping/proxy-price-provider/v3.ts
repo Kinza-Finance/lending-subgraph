@@ -119,28 +119,28 @@ export function priceFeedUpdated(
       priceOracleAsset.type = getPriceOracleAssetType(tokenTypeCall.value);
     }
     // for binance orale
-    // let binanceOracleProxyInstance = BinanceOracleAggregator.bind(assetOracleAddress);
-    // let sidRegistryAddressCall = binanceOracleProxyInstance.try_sidRegistryAddress();
-    // if (!sidRegistryAddressCall.reverted)  {
-    //   // @TODO update price
-    //   let getPriceCall = binanceOracleProxyInstance.try_latestAnswer();
-    //   if (!getPriceCall.reverted) {
-    //     genericPriceUpdate(priceOracleAsset, getPriceCall.value, event);
-    //   }
+    let binanceOracleProxyInstance = BinanceOracleAggregator.bind(assetOracleAddress);
+    let sidRegistryAddressCall = binanceOracleProxyInstance.try_sidRegistryAddress();
+    if (!sidRegistryAddressCall.reverted)  {
+      // @TODO update price
+      let getPriceCall = binanceOracleProxyInstance.try_latestAnswer();
+      if (!getPriceCall.reverted) {
+        genericPriceUpdate(priceOracleAsset, getPriceCall.value, event);
+      }
 
-    //   let binanceOracle = getOrInitBinanceOracle();
-    //   let tokens = binanceOracle.tokens;
+      let binanceOracle = getOrInitBinanceOracle();
+      let tokens = binanceOracle.tokens;
 
-    //   if (tokens.indexOf(sAssetAddress) == -1) {
-    //     let updatedTokens = [sAssetAddress];
-    //     for (let i = 0; i < tokens.length; i++) {
-    //       updatedTokens.push(tokens[i]);
-    //     }
-    //     binanceOracle.tokens = updatedTokens;
-    //     binanceOracle.save();
-    //   }
-    //   return;
-    // }
+      if (tokens.indexOf(sAssetAddress) == -1) {
+        let updatedTokens = [sAssetAddress];
+        for (let i = 0; i < tokens.length; i++) {
+          updatedTokens.push(tokens[i]);
+        }
+        binanceOracle.tokens = updatedTokens;
+        binanceOracle.save();
+      }
+      return;
+    }
 
     // Type simple means that the source is chainlink source
     if (priceOracleAsset.type == PRICE_ORACLE_ASSET_TYPE_SIMPLE) {
