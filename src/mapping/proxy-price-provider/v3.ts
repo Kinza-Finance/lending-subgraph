@@ -15,7 +15,7 @@ import {
 } from '../../utils/converters';
 import { IExtendedPriceAggregator } from '../../../generated/AaveOracle/IExtendedPriceAggregator';
 import { EACAggregatorProxy } from '../../../generated/AaveOracle/EACAggregatorProxy';
-// import { BinanceOracleAggregator } from '../../../generated/OnChainOracle/BinanceOracleAggregator';
+import { BinanceOracleAggregator } from '../../../generated/OnChainOracle/BinanceOracleAggregator';
 import { ChainlinkAggregator as ChainlinkAggregatorContract } from '../../../generated/templates';
 import {
   getChainlinkAggregator,
